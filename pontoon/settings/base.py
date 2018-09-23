@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.fxa',
+    'allauth.socialaccount.providers.github',
     'notifications',
     'graphene_django',
     'webpack_loader',
@@ -808,12 +809,24 @@ FXA_OAUTH_ENDPOINT = os.environ.get('FXA_OAUTH_ENDPOINT', '')
 FXA_PROFILE_ENDPOINT = os.environ.get('FXA_PROFILE_ENDPOINT', '')
 FXA_SCOPE = ['profile:uid', 'profile:display_name', 'profile:email']
 
+# Github
+GITHUB_CLIENT_ID = os.environ.get('GITHUB_CLIENT_ID', '')
+GITHUB_SECRET_KEY = os.environ.get('GITHUB_SECRET_KEY', '')
+GITHUB_OAUTH_ENDPOINT = os.environ.get('GITHUB_OAUTH_ENDPOINT', '')
+GITHUB_PROFILE_ENDPOINT = os.environ.get('GITHUB_PROFILE_ENDPOINT', '')
+GITHUB_SCOPE = ['user', 'repo', 'read:org']
+
 # All settings related to the AllAuth
 SOCIALACCOUNT_PROVIDERS = {
     'fxa': {
         'SCOPE': FXA_SCOPE,
         'OAUTH_ENDPOINT': FXA_OAUTH_ENDPOINT,
         'PROFILE_ENDPOINT': FXA_PROFILE_ENDPOINT,
+    },
+    'github': {
+        'SCOPE': GITHUB_SCOPE,
+        'OAUTH_ENDPOINT': GITHUB_OAUTH_ENDPOINT,
+        'PROFILE_ENDPOINT': GITHUB_PROFILE_ENDPOINT,
     }
 }
 

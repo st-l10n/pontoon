@@ -19,6 +19,7 @@ from django.utils.encoding import smart_str
 from django.utils.encoding import force_text
 from django.utils.functional import Promise
 
+from pontoon.settings import GITHUB_CLIENT_ID
 
 register = template.Library()
 parser = FluentParser()
@@ -252,6 +253,9 @@ def provider_login_url(request, provider_id='fxa', **query):
     This function adapts the django-allauth templatetags that don't support jinja2.
     @TODO: land support for the jinja2 tags in the django-allauth.
     """
+    if GITHUB_CLIENT_ID is not None:
+        # Using github OAuth if provided.
+        provider_id = 'github'
     provider = providers.registry.by_id(provider_id)
 
     auth_params = query.get('auth_params', None)
