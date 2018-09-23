@@ -1,3 +1,4 @@
+.dockerignore
 .git
 **/*.swp
 **/*.pyc
@@ -5,3 +6,5 @@ __pycache__
 .cache
 venv
 static
+node_modules
+frontend/node_modules
