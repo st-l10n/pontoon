@@ -814,7 +814,7 @@ GITHUB_CLIENT_ID = os.environ.get('GITHUB_CLIENT_ID', '')
 GITHUB_SECRET_KEY = os.environ.get('GITHUB_SECRET_KEY', '')
 GITHUB_OAUTH_ENDPOINT = os.environ.get('GITHUB_OAUTH_ENDPOINT', '')
 GITHUB_PROFILE_ENDPOINT = os.environ.get('GITHUB_PROFILE_ENDPOINT', '')
-GITHUB_SCOPE = ['user', 'repo', 'read:org']
+GITHUB_SCOPE = ['user']
 
 # All settings related to the AllAuth
 SOCIALACCOUNT_PROVIDERS = {
