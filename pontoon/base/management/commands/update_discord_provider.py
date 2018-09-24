@@ -37,7 +37,7 @@ class Command(BaseCommand):
         try:
             # Update the existing provider with current settings.
             app = SocialApp.objects.get(provider=DISCORD_PROVIDER_ID)
-            self.stdout.write("Updating existing Github OAuth provider "
+            self.stdout.write("Updating existing Discord OAuth provider "
                               "(pk=%s)" % app.pk)
             for k, v in data.items():
                 setattr(app, k, v)
