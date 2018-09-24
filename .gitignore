@@ -33,3 +33,5 @@ docker/config/webapp.env-e
 # Webpack
 /assets/
 webpack-stats.json
+
+.env
