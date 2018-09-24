@@ -9,34 +9,34 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.contrib.sites.models import Site
 from allauth.socialaccount.models import SocialApp
-from allauth.socialaccount.providers.github.provider import GitHubProvider
+from allauth.socialaccount.providers.discord.provider import DiscordProvider
 
 
-GITHUB_PROVIDER_ID = GitHubProvider.id
+DISCORD_PROVIDER_ID = DiscordProvider.id
 
 
 class Command(BaseCommand):
-    help = ('Ensures an allauth application for Github OAuth exists and has '
+    help = ('Ensures an allauth application for Discord OAuth exists and has '
             'credentials that match settings')
 
     def handle(self, *args, **options):
-        # Check if GITHUB_* settings are configured, bail if not.
-        if settings.GITHUB_CLIENT_ID is None or settings.GITHUB_SECRET_KEY is None:
-            self.stdout.write("GITHUB_* settings unavailable; "
+        # Check if DISCORD_* settings are configured, bail if not.
+        if settings.DISCORD_CLIENT_ID is None or settings.DISCORD_SECRET_KEY is None:
+            self.stdout.write("DISCORD_* settings unavailable; "
                               "skipping provider config.")
             return
 
         # Grab the credentials from settings
         data = dict(
-            name='github',
-            provider=GITHUB_PROVIDER_ID,
-            client_id=settings.GITHUB_CLIENT_ID,
-            secret=settings.GITHUB_SECRET_KEY
+            name='discord',
+            provider=DISCORD_PROVIDER_ID,
+            client_id=settings.DISCORD_CLIENT_ID,
+            secret=settings.DISCORD_SECRET_KEY
         )
 
         try:
             # Update the existing provider with current settings.
-            app = SocialApp.objects.get(provider=GITHUB_PROVIDER_ID)
+            app = SocialApp.objects.get(provider=DISCORD_PROVIDER_ID)
             self.stdout.write("Updating existing Github OAuth provider "
                               "(pk=%s)" % app.pk)
             for k, v in data.items():
@@ -46,7 +46,7 @@ class Command(BaseCommand):
             # Create the provider if necessary.
             app = SocialApp(**data)
             app.save()
-            self.stdout.write("Created new Github OAuth provider (pk=%s)" %
+            self.stdout.write("Created new Discord OAuth provider (pk=%s)" %
                               app.pk)
 
         # Ensure the provider applies to the current default site.

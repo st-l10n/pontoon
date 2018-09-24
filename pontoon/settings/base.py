@@ -145,7 +145,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.fxa',
-    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.discord',
     'notifications',
     'graphene_django',
     'webpack_loader',
@@ -809,12 +809,12 @@ FXA_OAUTH_ENDPOINT = os.environ.get('FXA_OAUTH_ENDPOINT', '')
 FXA_PROFILE_ENDPOINT = os.environ.get('FXA_PROFILE_ENDPOINT', '')
 FXA_SCOPE = ['profile:uid', 'profile:display_name', 'profile:email']
 
-# Github
-GITHUB_CLIENT_ID = os.environ.get('GITHUB_CLIENT_ID', '')
-GITHUB_SECRET_KEY = os.environ.get('GITHUB_SECRET_KEY', '')
-GITHUB_OAUTH_ENDPOINT = os.environ.get('GITHUB_OAUTH_ENDPOINT', '')
-GITHUB_PROFILE_ENDPOINT = os.environ.get('GITHUB_PROFILE_ENDPOINT', '')
-GITHUB_SCOPE = ['user']
+# Discord
+DISCORD_CLIENT_ID = os.environ.get('DISCORD_CLIENT_ID', '')
+DISCORD_SECRET_KEY = os.environ.get('DISCORD_SECRET_KEY', '')
+DISCORD_OAUTH_ENDPOINT = os.environ.get('DISCORD_OAUTH_ENDPOINT', '')
+DISCORD_PROFILE_ENDPOINT = os.environ.get('DISCORD_PROFILE_ENDPOINT', '')
+DISCORD_SCOPE = ['email', 'identify']
 
 # All settings related to the AllAuth
 SOCIALACCOUNT_PROVIDERS = {
@@ -823,10 +823,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'OAUTH_ENDPOINT': FXA_OAUTH_ENDPOINT,
         'PROFILE_ENDPOINT': FXA_PROFILE_ENDPOINT,
     },
-    'github': {
-        'SCOPE': GITHUB_SCOPE,
-        'OAUTH_ENDPOINT': GITHUB_OAUTH_ENDPOINT,
-        'PROFILE_ENDPOINT': GITHUB_PROFILE_ENDPOINT,
+    'discord': {
+        'SCOPE': DISCORD_SCOPE,
+        'OAUTH_ENDPOINT': DISCORD_OAUTH_ENDPOINT,
+        'PROFILE_ENDPOINT': DISCORD_PROFILE_ENDPOINT,
     }
 }
 
