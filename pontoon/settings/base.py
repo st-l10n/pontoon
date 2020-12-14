@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.gitlab",
+    "allauth.socialaccount.providers.discord",
     "notifications",
     "graphene_django",
     "webpack_loader",
@@ -802,6 +803,13 @@ GITLAB_SECRET_KEY = os.environ.get("GITLAB_SECRET_KEY")
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
 GOOGLE_SECRET_KEY = os.environ.get("GOOGLE_SECRET_KEY")
 
+# Discord
+DISCORD_CLIENT_ID = os.environ.get("DISCORD_CLIENT_ID")
+DISCORD_SECRET_KEY = os.environ.get("DISCORD_SECRET_KEY")
+DISCORD_OAUTH_ENDPOINT = os.environ.get("DISCORD_OAUTH_ENDPOINT")
+DISCORD_PROFILE_ENDPOINT = os.environ.get("DISCORD_PROFILE_ENDPOINT")
+DISCORD_SCOPE = ["email", "identify"]
+
 # All settings related to the AllAuth
 SOCIALACCOUNT_PROVIDERS = {
     "fxa": {
@@ -810,6 +818,11 @@ SOCIALACCOUNT_PROVIDERS = {
         "PROFILE_ENDPOINT": FXA_PROFILE_ENDPOINT,
     },
     "gitlab": {"GITLAB_URL": GITLAB_URL, "SCOPE": ["read_user"]},
+    "discord": {
+        "SCOPE": DISCORD_SCOPE,
+        "OAUTH_ENDPOINT": DISCORD_OAUTH_ENDPOINT,
+        "PROFILE_ENDPOINT": DISCORD_PROFILE_ENDPOINT,
+    }
 }
 
 # Defined all trusted origins that will be returned in pontoon.js file.
